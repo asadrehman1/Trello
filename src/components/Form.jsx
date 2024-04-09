@@ -6,6 +6,7 @@ const Form = ({ text, placeholder, value, onChange, onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (value === "") return;
     onSubmit();
     setShowForm(false);
   };
