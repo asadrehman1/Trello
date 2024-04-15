@@ -8,9 +8,9 @@ const Boards = () => {
   const [board, setBoard] = useState("");
   const { boards, setBoards } = useTrello();
 
-  const addTask = (bid, task) => {
+  const addTask = (boardId, task) => {
     let items = [...boards];
-    let boardIndex = items.findIndex((item) => item.id === bid);
+    let boardIndex = items.findIndex((item) => item.id === boardId);
 
     if (boardIndex < 0) return;
 
@@ -26,16 +26,16 @@ const Boards = () => {
     setBoards(items);
   };
 
-  const removeTask = (bid, cid) => {
+  const removeTask = (boardId, cardId) => {
     let boardItems = [...boards];
 
-    let boardIndex = boardItems.findIndex((item) => item.id === bid);
+    let boardIndex = boardItems.findIndex((item) => item.id === boardId);
 
     if (boardIndex < 0) return;
 
     let boardItem = boardItems[boardIndex];
 
-    let cardIndex = boardItem?.cards.findIndex((item) => item.id === cid);
+    let cardIndex = boardItem?.cards.findIndex((item) => item.id === cardId);
 
     if (cardIndex < 0) return;
 
@@ -55,10 +55,10 @@ const Boards = () => {
     setBoard("");
   };
 
-  const removeBoard = (bid) => {
+  const removeBoard = (boardId) => {
     let boardItems = [...boards];
 
-    let boardIndex = boardItems.findIndex((item) => item.id === bid);
+    let boardIndex = boardItems.findIndex((item) => item.id === boardId);
 
     if (boardIndex < 0) return;
 
@@ -67,9 +67,9 @@ const Boards = () => {
     setBoards(boardItems);
   };
 
-  const handleChange = (e) => {
-    setBoard(e.target.value);
-  };
+  //   const handleChange = (e) => {
+  //     setBoard(e.target.value);
+  //   };
 
   const reorder = (boards, startIndex, endIndex) => {
     const result = Array.from(boards);
@@ -153,7 +153,7 @@ const Boards = () => {
                   text="Add Board"
                   placeholder="Add Board"
                   value={board}
-                  onChange={handleChange}
+                  onChange={(e) => setBoard(e.target.value)}
                   onSubmit={addBoard}
                 />
               </div>
