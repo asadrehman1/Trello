@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { X as CrossIcon, Plus } from "react-feather";
 
 const Form = ({ text, placeholder, value, onChange, onSubmit }) => {
+  const formStyles =
+    "h-[50px] w-[330px] bg-zinc-900 border-2 border-zinc-900 hover:border-gray-500 mt-3 mb-3 p-2 cursor-pointer rounded-md flex justify-center items-center";
   const [showForm, setShowForm] = useState(false);
 
   const handleSubmit = (e) => {
@@ -36,10 +38,7 @@ const Form = ({ text, placeholder, value, onChange, onSubmit }) => {
           </button>
         </form>
       ) : (
-        <div
-          onClick={() => setShowForm(true)}
-          className="h-[50px] w-[330px] bg-zinc-900 border-2 border-zinc-900 hover:border-gray-500 mt-3 mb-3 p-2 cursor-pointer rounded-md flex justify-center items-center"
-        >
+        <div onClick={() => setShowForm(true)} className={formStyles}>
           <p className="mx-2">
             <Plus size={16} />
           </p>
