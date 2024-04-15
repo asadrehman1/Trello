@@ -3,39 +3,8 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Modal from "./Modal";
 import { useTrello } from "../context/TrelloContext";
-
-const modules = {
-  toolbar: [
-    [{ header: "1" }, { header: "2" }, { font: [] }],
-    [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-    ],
-    ["link", "image", "video"],
-    ["clean"],
-  ],
-};
-
-const formats = [
-  "header",
-  "font",
-  "size",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-  "image",
-  "video",
-];
+import { modules, formats } from "../Helpers/constants";
+import { filterBoardById } from "../utils/utils";
 
 const CardInfo = ({ setShowModal, cardId, boardId, description }) => {
   const { boards, setBoards } = useTrello();
@@ -45,18 +14,15 @@ const CardInfo = ({ setShowModal, cardId, boardId, description }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!quillRef.current) return; // Ensure ref exists
+    if (!quillRef.current) return;
 
     const htmlContent = quillRef.current.editor.root.innerHTML;
 
     if (htmlContent.trim() === "") return;
 
-    let boardItems = [...boards];
-    let boardIndex = boardItems.findIndex((item) => item.id === boardId);
+    const boardItem = filterBoardById(boards, boardId);
 
-    if (boardIndex < 0) return;
-
-    let boardItem = boardItems[boardIndex];
+    if (!boardItem) return;
 
     let cardIndex = boardItem?.cards.findIndex((item) => item.id === cardId);
 
@@ -66,7 +32,7 @@ const CardInfo = ({ setShowModal, cardId, boardId, description }) => {
 
     cardItem.description = htmlContent;
 
-    setBoards(boardItems);
+    setBoards([...boards]);
 
     setNewDescription("");
   };

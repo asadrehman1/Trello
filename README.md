@@ -16,3 +16,12 @@ Install trello with npm
   npm install
   npm run dev
 ```
+
+## Tech Stack
+
+**Client:**
+React: "18.2.0",
+react-beautiful-dnd: "13.1.1",
+react-feather: "2.0.10" ,
+react-quill: "2.0.0" ,
+tailwindcss: "3.4.3",
