@@ -131,14 +131,25 @@ const Boards = () => {
 
   return (
     <DragDropContext onDragEnd={dragEnd}>
-      <div className="min-h-[100vh] w-full">
-        <div className="h-[8vh] w-full bg-[#1d2125] flex justify-center items-center">
-          <h1 className="text-4xl font-bold text-slate-50">Trello</h1>
+      <div className="min-h-screen w-full bg-gray-100">
+        <div className="fixed top-10 right-0 m-4">
+          <Form
+            text="Add Board"
+            placeholder="Add Board"
+            value={board}
+            onChange={(e) => setBoard(e.target.value)}
+            onSubmit={addBoard}
+          />
         </div>
+
+        <div className="h-16 flex justify-center items-center bg-gray-800 text-white">
+          <h1 className="text-4xl font-bold">Trello</h1>
+        </div>
+
         <Droppable droppableId="boards" direction="horizontal" type="board">
           {(provided) => (
             <div
-              className="w-full flex flex-wrap items-start my-5"
+              className="w-full flex flex-wrap items-start my-20"
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
@@ -155,15 +166,6 @@ const Boards = () => {
                 />
               ))}
               {provided.placeholder}
-              <div className="mx-6">
-                <Form
-                  text="Add Board"
-                  placeholder="Add Board"
-                  value={board}
-                  onChange={(e) => setBoard(e.target.value)}
-                  onSubmit={addBoard}
-                />
-              </div>
             </div>
           )}
         </Droppable>
