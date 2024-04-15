@@ -3,7 +3,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Modal from "./Modal";
 import { useTrello } from "../context/TrelloContext";
-import { modules, formats } from "../constants";
+import { modules, formats } from "../Helpers/constants";
 import { filterBoardById } from "../utils/utils";
 
 const CardInfo = ({ setShowModal, cardId, boardId, description }) => {
