@@ -132,7 +132,7 @@ const Boards = () => {
   return (
     <DragDropContext onDragEnd={dragEnd}>
       <div className="min-h-[100vh] w-full">
-        <div className="h-[8vh] w-full border-4 bg-[#1d2125] border-b bordered-box border-b-[#9fadbc29] flex justify-center items-center">
+        <div className="h-[8vh] w-full bg-[#1d2125] flex justify-center items-center">
           <h1 className="text-4xl font-bold text-slate-50">Trello</h1>
         </div>
         <Droppable droppableId="boards" direction="horizontal" type="board">
