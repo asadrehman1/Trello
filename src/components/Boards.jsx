@@ -3,18 +3,23 @@ import Board from "./Board";
 import Form from "./Form";
 import { useTrello } from "../context/TrelloContext";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { filterBoardById } from "../utils/utils";
 
 const Boards = () => {
   const [board, setBoard] = useState("");
   const { boards, setBoards } = useTrello();
 
   const addTask = (boardId, task) => {
-    let items = [...boards];
-    let boardIndex = items.findIndex((item) => item.id === boardId);
+    // let items = [...boards];
+    // let boardIndex = items.findIndex((item) => item.id === boardId);
 
-    if (boardIndex < 0) return;
+    // if (boardIndex < 0) return;
 
-    let boardItem = boards[boardIndex];
+    // let boardItem = boards[boardIndex];
+
+    const boardItem = filterBoardById(boards, boardId);
+
+    if (!boardItem) return;
 
     let newTask = {
       id: Date.now() + Math.random() * 2,
@@ -23,17 +28,21 @@ const Boards = () => {
     };
 
     boardItem.cards.push(newTask);
-    setBoards(items);
+    setBoards([...boards]);
   };
 
   const removeTask = (boardId, cardId) => {
-    let boardItems = [...boards];
+    // let boardItems = [...boards];
 
-    let boardIndex = boardItems.findIndex((item) => item.id === boardId);
+    // let boardIndex = boardItems.findIndex((item) => item.id === boardId);
 
-    if (boardIndex < 0) return;
+    // if (boardIndex < 0) return;
 
-    let boardItem = boardItems[boardIndex];
+    // let boardItem = boardItems[boardIndex];
+
+    const boardItem = filterBoardById(boards, boardId);
+
+    if (!boardItem) return;
 
     let cardIndex = boardItem?.cards.findIndex((item) => item.id === cardId);
 
@@ -41,7 +50,7 @@ const Boards = () => {
 
     boardItem.cards.splice(cardIndex, 1);
 
-    setBoards(boardItems);
+    setBoards([...boards]);
   };
 
   const addBoard = () => {
@@ -56,15 +65,13 @@ const Boards = () => {
   };
 
   const removeBoard = (boardId) => {
-    let boardItems = [...boards];
-
-    let boardIndex = boardItems.findIndex((item) => item.id === boardId);
+    const boardIndex = boards.findIndex((item) => item.id === boardId);
 
     if (boardIndex < 0) return;
 
-    boardItems.splice(boardIndex, 1);
+    boards.splice(boardIndex, 1);
 
-    setBoards(boardItems);
+    setBoards([...boards]);
   };
 
   //   const handleChange = (e) => {
