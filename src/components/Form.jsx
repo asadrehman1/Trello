@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { X, Plus } from "react-feather";
+import { X as CrossIcon, Plus } from "react-feather";
 
 const Form = ({ text, placeholder, value, onChange, onSubmit }) => {
   const [showForm, setShowForm] = useState(false);
@@ -28,7 +28,7 @@ const Form = ({ text, placeholder, value, onChange, onSubmit }) => {
               onClick={() => setShowForm(false)}
               className="hover:bg-gray-500 p-1 rounded-sm mx-2 cursor-pointer"
             >
-              <X size={16} />
+              <CrossIcon size={16} />
             </p>
           </div>
           <button className="bg-sky-700 p-2 rounded-md my-2 text-white block">
