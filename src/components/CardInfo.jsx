@@ -20,12 +20,6 @@ const CardInfo = ({ setShowModal, cardId, boardId, description }) => {
 
     if (htmlContent.trim() === "") return;
 
-    // let boardItems = [...boards];
-    // let boardIndex = boardItems.findIndex((item) => item.id === boardId);
-
-    // if (boardIndex < 0) return;
-
-    // let boardItem = boardItems[boardIndex];
     const boardItem = filterBoardById(boards, boardId);
 
     if (!boardItem) return;

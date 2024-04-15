@@ -10,13 +10,6 @@ const Boards = () => {
   const { boards, setBoards } = useTrello();
 
   const addTask = (boardId, task) => {
-    // let items = [...boards];
-    // let boardIndex = items.findIndex((item) => item.id === boardId);
-
-    // if (boardIndex < 0) return;
-
-    // let boardItem = boards[boardIndex];
-
     const boardItem = filterBoardById(boards, boardId);
 
     if (!boardItem) return;
@@ -32,14 +25,6 @@ const Boards = () => {
   };
 
   const removeTask = (boardId, cardId) => {
-    // let boardItems = [...boards];
-
-    // let boardIndex = boardItems.findIndex((item) => item.id === boardId);
-
-    // if (boardIndex < 0) return;
-
-    // let boardItem = boardItems[boardIndex];
-
     const boardItem = filterBoardById(boards, boardId);
 
     if (!boardItem) return;
@@ -73,10 +58,6 @@ const Boards = () => {
 
     setBoards([...boards]);
   };
-
-  //   const handleChange = (e) => {
-  //     setBoard(e.target.value);
-  //   };
 
   const reorder = (boards, startIndex, endIndex) => {
     const result = Array.from(boards);
